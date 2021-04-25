@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 
 export function useTodos(initialTodos) {
   let [todos, setTodos] = useState(initialTodos);
   const [loading, setLoading] = useState(true);
+
   const handleDelete = useCallback(
     (item) => {
       setTodos(todos.filter(({ id }) => id !== item.id));
     },
     [todos, setTodos]
   );
+
   const handleAdd = useCallback(
     (value) =>
       setTodos([...todos, { id: Date.now(), title: value, completed: false }]),
@@ -37,12 +39,16 @@ export function useTodos(initialTodos) {
       });
   }, [setTodos, setLoading]);
 
-  return {
-    loading,
-    handleAdd,
-    handleComplete,
-    handleDelete,
-    todos,
-    setTodos,
-  };
+  const value = useMemo(
+    () => ({
+      loading,
+      handleAdd,
+      handleComplete,
+      handleDelete,
+      todos,
+      setTodos,
+    }),
+    [loading, handleAdd, handleComplete, handleDelete, todos, setTodos]
+  );
+  return value;
 }

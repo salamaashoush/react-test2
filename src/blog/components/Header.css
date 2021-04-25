@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  background-color: cadetblue;
+  color: white;
+  padding: 10px;
+}
+
+.header h1,
+.header p {
+  margin: 0;
+}
+
+.header h1 {
+  font-size: 30px;
+}
+
+.header p {
+  font-weight: bold;
+}

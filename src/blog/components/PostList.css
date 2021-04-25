@@ -1,0 +1,9 @@
+.post-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.post-list > * {
+  margin-bottom: 10px;
+}
